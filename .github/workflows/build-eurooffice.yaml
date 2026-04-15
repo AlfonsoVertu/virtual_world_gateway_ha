@@ -18,6 +18,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Read addon version
+        id: addon_version
+        run: |
+          VERSION=$(grep "^version:" eurooffice/config.yaml | sed "s/version: *[\"']//;s/[\"']//")
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
       - name: Set lowercase owner
         run: echo "OWNER=$(echo ${{ github.repository_owner }} | tr '[:upper:]' '[:lower:]')" >> $GITHUB_ENV
 
@@ -37,6 +43,8 @@ jobs:
           context: ./eurooffice
           platforms: linux/amd64
           push: true
-          tags: ghcr.io/${{ env.OWNER }}/eurooffice-amd64:latest
+          tags: |
+            ghcr.io/${{ env.OWNER }}/eurooffice-amd64:latest
+            ghcr.io/${{ env.OWNER }}/eurooffice-amd64:${{ env.VERSION }}
           build-args: |
             BUILD_FROM=ghcr.io/euro-office/documentserver:latest
