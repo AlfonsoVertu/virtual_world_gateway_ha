@@ -1,6 +1,6 @@
 ﻿name: "EuroOffice Document Server"
 description: "Collaborative ONLYOFFICE-based document server for Home Assistant."
-version: "1.0.3"
+version: "1.0.4"
 slug: "eurooffice"
 init: false
 arch:
