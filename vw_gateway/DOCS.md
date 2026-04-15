@@ -1,4 +1,8 @@
-﻿# Virtual World Gateway (WordPress)
+﻿![VW Gateway Icon](./icon.png)
+
+![Working With Web](https://raw.githubusercontent.com/AlfonsoVertu/WorkingWithEuroOffice/master/www_logo.png)
+
+# Virtual World Gateway (WordPress)
 
 WordPress-based middleware gateway designed to bridge AI (GPTs) and Home Assistant.
 
@@ -29,3 +33,4 @@ WordPress-based middleware gateway designed to bridge AI (GPTs) and Home Assista
 ## Credits
 This project is maintained and optimized by **Alfonso Vertucci** of **Working With Web**.
 Website: [workingwithweb.it/webagency](https://workingwithweb.it/webagency)
+

@@ -1,4 +1,8 @@
-﻿# EuroOffice Document Server
+﻿![EuroOffice Icon](./icon.png)
+
+![Working With Web](https://raw.githubusercontent.com/AlfonsoVertu/WorkingWithEuroOffice/master/www_logo.png)
+
+# EuroOffice Document Server
 
 Collaborative ONLYOFFICE-based document server for Home Assistant.
 
@@ -30,3 +34,4 @@ To use EuroOffice with Nextcloud:
 ## Credits
 This project is maintained and optimized by **Alfonso Vertucci** of **Working With Web**.
 Website: [workingwithweb.it/webagency](https://workingwithweb.it/webagency)
+
