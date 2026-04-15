@@ -1,6 +1,6 @@
 ﻿name: "EuroOffice Document Server"
 description: "Collaborative ONLYOFFICE-based document server for Home Assistant."
-version: "1.0.4"
+version: "1.0.5"
 slug: "eurooffice"
 init: false
 arch:
@@ -15,14 +15,10 @@ options:
   jwt_enabled: true
   jwt_secret: "my_jwt_secret"
   example_enabled: true
-  document_server_port: 8080
-  example_app_port: 3000
 schema:
   jwt_enabled: bool
   jwt_secret: password
   example_enabled: bool
-  document_server_port: int?
-  example_app_port: int?
 ports:
   80/tcp: 8080
   3000/tcp: 3000
