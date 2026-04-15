@@ -9,7 +9,6 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: alfonsoVertu/eurooffice
 
 jobs:
   build-and-push:
@@ -41,7 +40,7 @@ jobs:
           context: ./eurooffice
           platforms: linux/amd64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-amd64:latest
+          tags: ghcr.io/alfonsoVertu/eurooffice-amd64:latest
           build-args: |
             BUILD_FROM=ghcr.io/euro-office/documentserver:latest
 
@@ -51,6 +50,6 @@ jobs:
           context: ./eurooffice
           platforms: linux/arm64
           push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-aarch64:latest
+          tags: ghcr.io/alfonsoVertu/eurooffice-aarch64:latest
           build-args: |
             BUILD_FROM=ghcr.io/euro-office/documentserver:latest
