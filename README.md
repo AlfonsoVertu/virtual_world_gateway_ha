@@ -9,23 +9,26 @@ Una suite di add-on per Home Assistant orientati all''automazione intelligente, 
 ### 🌐 Virtual World Dashboard
 WordPress come middleware REST tra le tue GPT Actions e Home Assistant. Include il plugin **Virtual World Gate Key** pre-installato: salva il Long-Lived Access Token, espone le rotte sicure verso HA, genera shortcode e card per il tuo sito.
 
+### 📦 WWW WordPress Suite
+Un''installazione WordPress pulita che pre-carica al primo avvio un set esclusivo di plugin professionali di Working With Web (Multi-vendor, Noleggio Video, Minify CSS/JS/HTML, Image Converter, TOC, Malware Scanner, Blog2Social, Shortcoder). Pronti per essere attivati dalla bacheca.
+
 ### 📄 EuroOffice (ONLYOFFICE Document Server)
-Server di documenti collaborativo compatibile con formati Microsoft Office. Si integra nativamente con Nextcloud per la modifica in tempo reale.
+Server di documenti collaborativo compatibile con formati Microsoft Office. Si integra nativamente con Nextcloud.
 
 ### ☁️ Nextcloud + ONLYOFFICE
 Piattaforma di storage e collaborazione cloud self-hosted. Questa versione include OCR e il connettore auto-configurato per EuroOffice.
 
 ### 💼 Odoo 16
-Suite ERP completa: CRM, contabilità, vendite, inventario e molto altro. Si connette al database PostgreSQL esterno. Ideale per chi gestisce una piccola impresa dalla propria infrastruttura.
+Suite ERP completa: CRM, contabilità, vendite, inventario e molto altro. Si connette al database PostgreSQL esterno. 
 
 ### 🔐 Nginx Proxy Manager
-Gestione proxy inversi con supporto SSL automatico (Let''s Encrypt). Permette di esporre in modo sicuro i servizi della rete su un dominio pubblico senza configurare manualmente Nginx.
+Gestione proxy inversi con supporto SSL automatico (Let''s Encrypt). 
 
 ### 🛡️ AdGuard Home
-DNS server con blocco di pubblicità, tracker e malware a livello di rete. Protegge tutti i dispositivi connessi senza installare nulla sui singoli device.
+DNS server con blocco di pubblicità, tracker e malware a livello di rete. 
 
 ### 🔍 Elasticsearch
-Motore di ricerca e analisi dati distribuito. Utile per indicizzare log, eventi e dati provenienti da Home Assistant o altri servizi della suite.
+Motore di ricerca e analisi dati distribuito. 
 
 ---
 

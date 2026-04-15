@@ -1,0 +1,23 @@
+# pack-refs with: peeled fully-peeled sorted 
+c4b244c7e14a90f69be0e4175129734f15428cf0 refs/remotes/origin/codex/add-button-to-add-license-in-admin-page
+b3fe625ffb4c899b78da9db689f45e1a39fee646 refs/remotes/origin/codex/add-cloudfront-configuration-steps
+5a03b5ef24796e0fa2642f60c0d6ca3aaa2baec5 refs/remotes/origin/codex/add-credentials-to-hls-player-requests
+4943d54b2b1ca1cc58673f923b32583c4856754e refs/remotes/origin/codex/add-global-groups-for-object-cache
+b6bc76f309cf689e73fe3a0c10dbb6d282a2ca95 refs/remotes/origin/codex/disable-canonical-redirect-for-/keys/-.key
+ae552a8b98c19a9e777d87a88bcd6eb4f4f53e11 refs/remotes/origin/codex/fix-race-condition-in-player.js-init
+4481f1d44e5db66738dde17c941d8f777271e336 refs/remotes/origin/codex/fix-race-condition-in-player.js-init-o4b3wq
+30b87367e17099a8f4974048c4b34b4d77f58236 refs/remotes/origin/codex/fix-rewrite-rules-for-key-endpoint
+ef0426061a1f63c5e63073d40f3f41554f820bb7 refs/remotes/origin/codex/generate-updated-documentation-from-files
+0dd35172aff4a12c003d2d685db471ce35030430 refs/remotes/origin/codex/implement-hls-video-access-with-licenses
+35f9acb6d05b2cf8f625b16d8e15df8bf06964a0 refs/remotes/origin/codex/implement-resume-and-position-saving-feature
+2b8b8b6519c3e0dbb156bbf1bfe79cd50992e6d3 refs/remotes/origin/codex/implement-rewrite-for-alphanumeric-slugs
+176a64f613f07ae068851d930d7ee44763a7f553 refs/remotes/origin/codex/implement-schema-upgrade-process
+178e2f43b1bf22dbdd9df8c16e54f94f1a07672f refs/remotes/origin/codex/implement-video-access-licensing-system
+914f7cab318a9c3484b13ec5ff2bc3bae114f80f refs/remotes/origin/codex/implement-video-access-with-licenses
+33bc13c102377dbc15111c5a2835649fc3e6e120 refs/remotes/origin/codex/integrate-dynamic-video-ads-in-wp-video-tickets
+76482b4affb4a9e5895227274b9f3141b3b6c0c7 refs/remotes/origin/codex/normalize-cloudfront-signature-before-setcookie
+1dbb0ad2f2eaac9409852d1d6049234a5a629caa refs/remotes/origin/codex/review-and-apply-security-patches
+097fe4bbf0b39b8a151ba6bd1c0eeaa06dca5d56 refs/remotes/origin/codex/rework-plugin-configuration-instructions
+4ec4b1bafef44ad8b694c583be9a08d02098384d refs/remotes/origin/codex/update-cookie-settings-and-cors-headers
+37f100b2fb015667b84f4d97af7a58b1ac768558 refs/remotes/origin/codex/verify-critical-points-for-migration
+890f8dfe75c428ae97d0188b5de7775be099c334 refs/remotes/origin/main
