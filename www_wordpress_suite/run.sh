@@ -56,6 +56,10 @@ fi
 
 # Configure Apache DocumentRoot and PHP
 echo "Configuring Apache for WordPress..."
+mkdir -p /var/log/apache2
+ln -sf /dev/stdout /var/log/apache2/access.log
+ln -sf /dev/stderr /var/log/apache2/error.log
+
 sed -i "s|DocumentRoot \"/var/www/localhost/htdocs\"|DocumentRoot \"${WP_PATH}\"|g" /etc/apache2/httpd.conf
 sed -i "s|<Directory \"/var/www/localhost/htdocs\">|<Directory \"${WP_PATH}\">|g" /etc/apache2/httpd.conf
 sed -i "s|AllowOverride None|AllowOverride All|g" /etc/apache2/httpd.conf
