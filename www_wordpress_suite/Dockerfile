@@ -21,7 +21,11 @@ RUN apk add --no-cache \
     php83-exif \
     php83-tokenizer \
     php83-dom \
+    mariadb \
+    mariadb-server-utils \
     mariadb-client \
+    php83-mysqli \
+    php83-pdo_mysql \
     wget \
     curl \
     bash \
