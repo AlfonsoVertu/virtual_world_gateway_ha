@@ -69,12 +69,8 @@ ARG MODULES="00-banner.sh 01-custom_script.sh 00-local_mounts.sh 00-smb_mounts.s
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-# Manual apps
-ENV PACKAGES="nginx engrampa kwalletmanager"
-
-# Automatic apps & bashio
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
+# Manual apps - install directly with apt-get (bypassing ha_autoapps.sh which requires 'micro' not available here)
+RUN apt-get update && apt-get install -yqq --no-install-recommends nginx engrampa kwalletmanager && rm -rf /var/lib/apt/lists/*
 
 ################
 # 4 Entrypoint #

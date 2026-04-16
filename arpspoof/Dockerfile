@@ -48,12 +48,8 @@ ARG MODULES="00-banner.sh 01-custom_script.sh 00-global_var.sh"
 COPY ha_automodules.sh /ha_automodules.sh
 RUN chmod 744 /ha_automodules.sh && /ha_automodules.sh "$MODULES" && rm /ha_automodules.sh
 
-# Manual apps
-ENV PACKAGES="jq curl iproute2"
-
-# Automatic apps & bashio
-COPY ha_autoapps.sh /ha_autoapps.sh
-RUN chmod 744 /ha_autoapps.sh && /ha_autoapps.sh "$PACKAGES" && rm /ha_autoapps.sh
+# Manual apps - install directly with apk (bypassing ha_autoapps.sh which requires 'micro' not available in HA base)
+RUN apk add --no-cache jq curl iproute2
 
 ################
 # 4 Entrypoint #
