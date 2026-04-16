@@ -1,4 +1,4 @@
-Changes cloudflare package version from 4.0.* to 2.19.* (without pinning it)
+﻿Changes cloudflare package version from 4.0.* to 2.19.* (without pinning it)
 to resolve dependency conflict with certbot-dns-cloudflare in NPM 2.12.4.
 
 Fixes: https://github.com/hassio-addons/addon-nginx-proxy-manager/issues/658

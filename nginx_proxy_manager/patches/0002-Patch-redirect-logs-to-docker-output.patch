@@ -1,4 +1,4 @@
-From 58a397ae6160c8f91721d54dea789097a56b8bf9 Mon Sep 17 00:00:00 2001
+﻿From 58a397ae6160c8f91721d54dea789097a56b8bf9 Mon Sep 17 00:00:00 2001
 From: Franck Nijhof <git@frenck.dev>
 Date: Fri, 12 Jan 2024 17:14:53 +0100
 Subject: [PATCH 2/3] Patch redirect logs to docker output
