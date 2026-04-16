@@ -1,4 +1,4 @@
-﻿From 039b8212a4f409e7e0f853fff1f173193886b7e1 Mon Sep 17 00:00:00 2001
+From 039b8212a4f409e7e0f853fff1f173193886b7e1 Mon Sep 17 00:00:00 2001
 From: Franck Nijhof <git@frenck.dev>
 Date: Sat, 13 Jan 2024 10:19:57 +0100
 Subject: [PATCH 3/3] Patch npm certbot venv plugin handling

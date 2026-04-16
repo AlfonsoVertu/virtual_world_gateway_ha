@@ -1,4 +1,4 @@
-﻿--- a/frontend/webpack.config.js
+--- a/frontend/webpack.config.js
 +++ b/frontend/webpack.config.js
 @@ -75,9 +75,14 @@ module.exports = {
  			{
