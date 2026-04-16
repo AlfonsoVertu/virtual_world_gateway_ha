@@ -28,6 +28,7 @@ RUN apk add --no-cache \
     php83-pdo_mysql \
     wget \
     curl \
+    jq \
     bash \
     dos2unix
 
