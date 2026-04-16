@@ -67,6 +67,9 @@ jobs:
                 || curl -fsSL "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" \
                 || echo "#!/bin/bash" > "$ADDON_DIR/$SCRIPT"
               chmod +x "$ADDON_DIR/$SCRIPT"
+              if [ "$SCRIPT" = "ha_automodules.sh" ]; then
+                sed -i 's/apt-get update/apt-get clean \&\& rm -rf \/var\/lib\/apt\/lists\/\* \&\& apt-get update/g' "$ADDON_DIR/$SCRIPT"
+              fi
             fi
           done
 
