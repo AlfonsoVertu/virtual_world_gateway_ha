@@ -42,6 +42,22 @@ jobs:
           echo "BUILD_FROM_AMD64=$BF_AMD64" >> $GITHUB_ENV
           echo "BUILD_FROM_AARCH64=$BF_AARCH64" >> $GITHUB_ENV
 
+      - name: Download alexbelgium shared helper scripts if needed
+        run: |
+          ADDON_DIR="${{ matrix.addon }}"
+          DOCKERFILE="$ADDON_DIR/Dockerfile"
+          BASE_URL="https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates"
+          SCRIPTS=(ha_lsio.sh ha_automodules.sh ha_autoapps.sh ha_entrypoint.sh bashio-standalone.sh)
+          for SCRIPT in "${SCRIPTS[@]}"; do
+            if grep -q "COPY $SCRIPT" "$DOCKERFILE" && [ ! -f "$ADDON_DIR/$SCRIPT" ]; then
+              echo "Downloading $SCRIPT for $ADDON_DIR..."
+              curl -fsSL "$BASE_URL/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" || \
+              curl -fsSL "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" || \
+              echo "#!/bin/bash" > "$ADDON_DIR/$SCRIPT"
+              chmod +x "$ADDON_DIR/$SCRIPT"
+            fi
+          done
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 

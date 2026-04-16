@@ -19,7 +19,7 @@ COPY plugin/virtual-world-gate-key /var/www/html/wp-content/plugins/virtual-worl
 
 # Copy and install WP GPT Automation Free
 COPY plugin/wp-gpt-automation-free.zip /tmp/wp-gpt-automation-free.zip
-RUN unzip /tmp/wp-gpt-automation-free.zip -d /var/www/html/wp-content/plugins/ && \
+RUN python3 -c "import zipfile; zipfile.ZipFile('/tmp/wp-gpt-automation-free.zip').extractall('/var/www/html/wp-content/plugins/')" && \
     rm /tmp/wp-gpt-automation-free.zip
 
 # Copy entrypoint script
