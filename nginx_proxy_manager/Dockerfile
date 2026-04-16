@@ -26,7 +26,8 @@ RUN echo "=== Alpine release ===" \
 ARG NGINX_PROXY_MANAGER_VERSION="v2.12.4"
 # hadolint ignore=DL3003,DL3042
 RUN \
-    apk add --no-cache --upgrade --virtual .build-dependencies \
+    apk upgrade --no-cache && \
+    apk add --no-cache --virtual .build-dependencies \
         build-base \
         git \
         libffi-dev \
@@ -34,7 +35,7 @@ RUN \
         patch \
         python3-dev \
     \
-    && apk add --no-cache --upgrade \
+    && apk add --no-cache \
         apache2-utils \
         certbot \
         libcap \
