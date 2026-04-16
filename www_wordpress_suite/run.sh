@@ -99,12 +99,16 @@ if [ ! -f "${WP_PATH}/wp-login.php" ]; then
         --dbuser="${DB_USER}" \
         --dbpass="${DB_PASS}" \
         --dbhost="${DB_HOST}" \
-        --allow-root --quiet
+        --allow-root --quiet --extra-php <<PHP
+if (isset(\$_SERVER['HTTP_X_FORWARDED_PROTO']) && \$_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+    \$_SERVER['HTTPS'] = 'on';
+}
+PHP
 
     echo "Installing WordPress..."
     wp core install \
         --path="${WP_PATH}" \
-        --url="http://${WP_DOMAIN}:8082" \
+        --url="https://${WP_DOMAIN}" \
         --title="${WP_TITLE}" \
         --admin_user="${WP_ADMIN}" \
         --admin_password="${WP_PASS}" \
