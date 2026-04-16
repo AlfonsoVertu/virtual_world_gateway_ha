@@ -89,7 +89,7 @@ RUN \
         --path /opt/nginx-proxy-manager \
         --no-progress \
         --keep-empty \
-        --run \
+        --run || true \
     \
     && yarn global remove modclean \
     && yarn cache clean \
