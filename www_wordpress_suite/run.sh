@@ -68,7 +68,7 @@ if ! grep -q "LoadModule php_module" /etc/apache2/httpd.conf; then
 fi
 
 # Fix permissions for the directory
-sed -i "/<Directory \"${WP_PATH}\">/,/<\/Directory>/ s/Require all denied/Require all granted/" /etc/apache2/httpd.conf
+sed -i "\%<Directory \"${WP_PATH}\">\%,\%</Directory>\% s|Require all denied|Require all granted|" /etc/apache2/httpd.conf
 # Alternatively, ensure it has the correct block content if it was empty
 if grep -q '<Directory "/var/www/html">\s*</Directory>' /etc/apache2/httpd.conf; then
     sed -i '/<Directory "\/var\/www\/html">/a \    Options Indexes FollowSymLinks\n    AllowOverride All\n    Require all granted' /etc/apache2/httpd.conf
