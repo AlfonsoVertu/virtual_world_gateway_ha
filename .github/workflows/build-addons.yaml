@@ -26,22 +26,28 @@ jobs:
       - name: Read addon version
         id: addon_version
         run: |
-          VERSION=$(grep "^version:" ${{ matrix.addon }}/config.yaml | sed -E "s/version:[[:space:]]*[\"']?(.*)[\"']?/\1/" | tr -d "[:space:]\"'")
+          VERSION=$(grep "^version:" ${{ matrix.addon }}/config.yaml | sed -E "s/version:[[:space:]]*(.*)/\1/" | sed "s/[\"' ]//g")
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Fetch BUILD_FROM arguments
         run: |
-          # Try build.yaml first
-          if [ -f ${{ matrix.addon }}/build.yaml ]; then
-            BF_AMD64=$(grep "amd64:" ${{ matrix.addon }}/build.yaml | awk '{print $2}' | tr -d '"'"''"')
-            BF_AARCH64=$(grep "aarch64:" ${{ matrix.addon }}/build.yaml | awk '{print $2}' | tr -d '"'"''"')
-          fi
-          # Fallback: parse build.json (used by LSIO-based addons like webtop_kde)
-          if [ -z "$BF_AMD64" ] && [ -f ${{ matrix.addon }}/build.json ]; then
-            BF_AMD64=$(python3 -c "import json,sys; d=json.load(open('${{ matrix.addon }}/build.json')); print(d.get('build_from',{}).get('amd64',''))" 2>/dev/null || true)
-            BF_AARCH64=$(python3 -c "import json,sys; d=json.load(open('${{ matrix.addon }}/build.json')); print(d.get('build_from',{}).get('aarch64',''))" 2>/dev/null || true)
+          ADDON="${{ matrix.addon }}"
+          BF_AMD64=""
+          BF_AARCH64=""
+
+          # Try build.yaml first (strip quotes with sed)
+          if [ -f "$ADDON/build.yaml" ]; then
+            BF_AMD64=$(grep "amd64:" "$ADDON/build.yaml" | awk '{print $2}' | sed 's/["\x27]//g')
+            BF_AARCH64=$(grep "aarch64:" "$ADDON/build.yaml" | awk '{print $2}' | sed 's/["\x27]//g')
           fi
 
+          # Fallback: parse build.json for LSIO-based addons (e.g. webtop_kde)
+          if [ -z "$BF_AMD64" ] && [ -f "$ADDON/build.json" ]; then
+            BF_AMD64=$(python3 -c "import json; d=json.load(open('$ADDON/build.json')); print(d.get('build_from',{}).get('amd64',''))" 2>/dev/null || echo "")
+            BF_AARCH64=$(python3 -c "import json; d=json.load(open('$ADDON/build.json')); print(d.get('build_from',{}).get('aarch64',''))" 2>/dev/null || echo "")
+          fi
+
+          # Final fallback to generic HA base images
           if [ -z "$BF_AMD64" ]; then BF_AMD64="ghcr.io/home-assistant/amd64-base:latest"; fi
           if [ -z "$BF_AARCH64" ]; then BF_AARCH64="ghcr.io/home-assistant/aarch64-base:latest"; fi
 
@@ -53,13 +59,13 @@ jobs:
           ADDON_DIR="${{ matrix.addon }}"
           DOCKERFILE="$ADDON_DIR/Dockerfile"
           BASE_URL="https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/.templates"
-          SCRIPTS=(ha_lsio.sh ha_automodules.sh ha_autoapps.sh ha_entrypoint.sh bashio-standalone.sh)
-          for SCRIPT in "${SCRIPTS[@]}"; do
+          SCRIPTS="ha_lsio.sh ha_automodules.sh ha_autoapps.sh ha_entrypoint.sh bashio-standalone.sh"
+          for SCRIPT in $SCRIPTS; do
             if grep -q "COPY $SCRIPT" "$DOCKERFILE" && [ ! -f "$ADDON_DIR/$SCRIPT" ]; then
               echo "Downloading $SCRIPT for $ADDON_DIR..."
-              curl -fsSL "$BASE_URL/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" || \
-              curl -fsSL "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" || \
-              echo "#!/bin/bash" > "$ADDON_DIR/$SCRIPT"
+              curl -fsSL "$BASE_URL/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" \
+                || curl -fsSL "https://raw.githubusercontent.com/alexbelgium/hassio-addons/master/$SCRIPT" -o "$ADDON_DIR/$SCRIPT" \
+                || echo "#!/bin/bash" > "$ADDON_DIR/$SCRIPT"
               chmod +x "$ADDON_DIR/$SCRIPT"
             fi
           done
@@ -84,7 +90,7 @@ jobs:
           platforms: linux/amd64
           push: true
           build-args: |
-             BUILD_FROM=${{ env.BUILD_FROM_AMD64 }}
+            BUILD_FROM=${{ env.BUILD_FROM_AMD64 }}
           tags: |
             ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-amd64:latest
             ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-amd64:${{ env.VERSION }}
@@ -97,7 +103,7 @@ jobs:
           platforms: linux/arm64
           push: true
           build-args: |
-             BUILD_FROM=${{ env.BUILD_FROM_AARCH64 }}
+            BUILD_FROM=${{ env.BUILD_FROM_AARCH64 }}
           tags: |
             ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-aarch64:latest
             ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-aarch64:${{ env.VERSION }}
