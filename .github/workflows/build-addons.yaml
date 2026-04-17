@@ -86,8 +86,8 @@ jobs:
           # Extract exact image URL from config.yaml to avoid underscore/hyphen mismatches
           IMAGE_NAME=$(grep -e '^image:' "$ADDON_DIR/config.yaml" | sed 's/^image:[[:space:]]*//' | sed 's/^["'"'"']//;s/["'"'"']$//' | tr -d '[:space:]' || echo "")
           if [ -n "$IMAGE_NAME" ] && [ "$IMAGE_NAME" != "image:" ]; then
-            IMAGE_AMD64=$(echo "$IMAGE_NAME" | sed 's/{arch}/amd64/g')
-            IMAGE_AARCH64=$(echo "$IMAGE_NAME" | sed 's/{arch}/aarch64/g')
+            IMAGE_AMD64=$(echo "$IMAGE_NAME" | sed 's/{arch}/amd64/g' | sed "s|ghcr.io/alexbelgium|ghcr.io/${{ env.OWNER }}|g")
+            IMAGE_AARCH64=$(echo "$IMAGE_NAME" | sed 's/{arch}/aarch64/g' | sed "s|ghcr.io/alexbelgium|ghcr.io/${{ env.OWNER }}|g")
           else
             IMAGE_AMD64="ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-amd64"
             IMAGE_AARCH64="ghcr.io/${{ env.OWNER }}/${{ matrix.addon }}-aarch64"
